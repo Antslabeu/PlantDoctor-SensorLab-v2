@@ -6,10 +6,45 @@ build-backend = "setuptools.build_meta"
 name = "sensorlab"
 version = "0.1.0"
 description = "Virtual engineering laboratory for capacitive sensor design."
+readme = "README.md"
 requires-python = ">=3.12"
+authors = [
+    { name = "Konrad" }
+]
+dependencies = []
 
-[tool.black]
-line-length = 88
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.12",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.ruff]
 line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
